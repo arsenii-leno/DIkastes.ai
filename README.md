@@ -14,7 +14,7 @@ To build a modular, high-precision Python framework that leverages LLMs with lon
 The core architecture follows an **Orchestrator-Workers (Swarm)** pattern. Agents do not share prompts; 
 they share a synchronized global state (`DikastesState`) to prevent context drift and performance degradation (Lost in the Middle).
 
-                  [ Raw Case Materials / Factum ]
+[ Raw Case Materials / Factum ]
                                  │
                                  ▼
                 ┌─────────────────────────────────┐
@@ -31,22 +31,19 @@ they share a synchronized global state (`DikastesState`) to prevent context drif
 │    2. Prosecutor Agent    │                   │      3. Advocate Agent    │
 │ (Aggravating / Strict)    │                   │   (Mitigating / Lenient)  │
 └────────────┬──────────────┘                   └────────────┬──────────────┘
-│                                               │
-Updates State.prosecution                       Updates State.defense
-│                                               │
-└───────────────────────┬───────────────────────┘
-│
-▼
-┌─────────────────────────────────┐
-│        4. Judge Agent           │
-│ (Weighs Arguments & Synthesizes)│
-└────────────────┬────────────────┘
-│
-▼
-[ Final Verdict: 3 Scenarios ]
-
-
----
+             │                                               │
+ Updates State.prosecution                       Updates State.defense
+             │                                               │
+             └───────────────────────┬───────────────────────┘
+                                     │
+                                     ▼
+                    ┌─────────────────────────────────┐
+                    │        4. Judge Agent           │
+                    │ (Weighs Arguments & Synthesizes)│
+                    └────────────────┬────────────────┘
+                                     │
+                                     ▼
+                      [ Final Verdict: 3 Scenarios ]
 
 ## ⚙️ Architectural Specifications
 
