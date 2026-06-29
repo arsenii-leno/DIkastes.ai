@@ -44,6 +44,7 @@ they share a synchronized global state (`DikastesState`) to prevent context drif
                                      │
                                      ▼
                       [ Final Verdict: 3 Scenarios ]
+                      --------------------------------
 
 ## ⚙️ Architectural Specifications
 
