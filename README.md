@@ -14,7 +14,8 @@ To build a modular, high-precision Python framework that leverages LLMs with lon
 The core architecture follows an **Orchestrator-Workers (Swarm)** pattern. Agents do not share prompts; 
 they share a synchronized global state (`DikastesState`) to prevent context drift and performance degradation (Lost in the Middle).
 
-[ Raw Case Materials / Factum ]
+```
+                  [ Raw Case Materials / Factum ]
                                  │
                                  ▼
                 ┌─────────────────────────────────┐
@@ -44,7 +45,7 @@ they share a synchronized global state (`DikastesState`) to prevent context drif
                                      │
                                      ▼
                       [ Final Verdict: 3 Scenarios ]
-                      --------------------------------
+```
 
 ## ⚙️ Architectural Specifications
 
