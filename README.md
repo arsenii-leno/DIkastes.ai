@@ -1,81 +1,42 @@
-# DIkastes.ai
+# ⚖️ DIkastes.ai — LegalTech Statutory & Case Law Assistant
 
-Multi-agent AI orchestration system designed to analyze legal cases, evaluate evidence based on Ukrainian legislation, and generate structured judicial decisions across three distinct scenarios (Lenient, Standard, Strict).
+**Status:** 🧪 Research / Bachelor Prototype | **Domain:** Legal Informatics | **Stack:** Python + LLMs
 
----
-
-## 🎯 Project Vision & Core Goal
-To build a modular, high-precision Python framework that leverages LLMs with long context windows (e.g., Gemini Pro) to completely eliminate hallucinations in legal analysis using isolated agent roles and structured state management(RAG).
+An AI-driven assistant combining Large Language Models with domain-specific legal knowledge retrieval (RAG) to assist law students and practitioners in statutory cross-referencing and precedent analysis.
 
 ---
 
-## 🤖 Multi-Agent Swarm Architecture
+## 🎯 Architectural Pipeline
 
-The core architecture follows an **Orchestrator-Workers (Swarm)** pattern. Agents do not share prompts; 
-they share a synchronized global state (`DikastesState`) to prevent context drift and performance degradation (Lost in the Middle).
+┌─────────────────────────────────────────────────────────┐
+│                 Natural Language Legal Query             │
+├─────────────────────────────────────────────────────────┤
+│            Embeddings & Vector Retrieval Pipeline       │
+│  ├── Legal Document Ingestion (Statutes & Court Records)│
+│  └── Semantic Chunking & Relevance Scoring              │
+├─────────────────────────────────────────────────────────┤
+│            LLM Context Assembly & Strict Prompting       │
+│  └── Citation-backed response generation                │
+└─────────────────────────────────────────────────────────┘
 
-```
-                  [ Raw Case Materials / Factum ]
-                                 │
-                                 ▼
-                ┌─────────────────────────────────┐
-                │      1. Registrar Agent         │
-                │  (Fact Extraction & De-noising) │
-                └────────────────┬────────────────┘
-                                 │
-              Updates State.extracted_facts
-                                 │
-                                 ▼
-         ┌───────────────────────┴───────────────────────┐
-         ▼                                               ▼
-┌───────────────────────────┐                   ┌───────────────────────────┐
-│    2. Prosecutor Agent    │                   │      3. Advocate Agent    │
-│ (Aggravating / Strict)    │                   │   (Mitigating / Lenient)  │
-└────────────┬──────────────┘                   └────────────┬──────────────┘
-             │                                               │
- Updates State.prosecution                       Updates State.defense
-             │                                               │
-             └───────────────────────┬───────────────────────┘
-                                     │
-                                     ▼
-                    ┌─────────────────────────────────┐
-                    │        4. Judge Agent           │
-                    │ (Weighs Arguments & Synthesizes)│
-                    └────────────────┬────────────────┘
-                                     │
-                                     ▼
-                      [ Final Verdict: 3 Scenarios ]
-```
-
-## ⚙️ Architectural Specifications
-
-### 1. Global State Management (`DikastesState`)
-Every agent accepts the state object, executes its internal logic, and mutates only its designated key within the state.
-* **`raw_case`**: Original unformatted narrative or case files.
-* **`extracted_facts`**: Chronology, legally significant actions, identified entities.
-* **`prosecution_analysis`**: Articles violated, maximum statutory penalties, aggravating factors.
-* **`defense_analysis`**: Mitigating circumstances, procedural errors, minimum sanctions.
-* **`final_verdicts`**: Synthesized output containing 3 distinct branches (Soft, Standard, Heavy).
-
-### 2. Output Scenarios
-* **⚖️ Lenient:** Minimum fine, acquittal pathways, probation options, or lowest statutory boundary.
-* **⚖️ Standard:** Established judicial practice average, typical balanced sentencing.
-* **⚖️ Strict:** Maximum penalty under the specific article, comprehensive qualification of all offenses.
-
-### 3. Anti-Hallucination & RAG Guardrails
-* **Strict Source Grounding:** Every legal reference must cite real articles of Ukrainian Codes (CCU, CPCU, CCV, etc.).
-* **Zero-Imagination Policy:** If the context lacks data for a specific legal element, the agent must write `"Insufficient data in context"`.
 
 ---
 
-## 🛠️ Tech Stack & Concepts to Implement
-* **Language:** Python 3.11+
-* **AI Core:** Google Gemini Pro API (Utilizing up to 1-2M token context window for loading entire codes).
-* **Paradigms:** Agentic orchestration, RAG (Retrieval-Augmented Generation), Backpropagation & weights intuition, System infrastructure optimization.
+## 🚀 Key Objectives
+
+- **Grounded Legal Retrieval:** Reduces model hallucinations by injecting direct citations and statutory articles into the context window.
+- **Multi-Jurisdiction Alignment:** Structured for comparative analysis across domestic and European legal frameworks.
+- **Dual Domain Synergy:** Engineered at the intersection of Computer Science (FIIT STU) and Jurisprudence (UzhNU).
 
 ---
 
-## 📝 Instructions for AI Coding Assistants (Vibe Coding Mode)
-1. **Maintain Context:** Read the entire `DikastesState` implementation before editing any agent logic.
-2. **Role Isolation:** When writing prompts or logic for the Prosecutor, do NOT include defensive arguments, and vice versa. Keep the roles pure.
-3. **No Code Bloat:** Prefer modular, testable Python classes. Avoid massive single-prompt scripts.
+## 🛠️ Tech Stack
+
+- **Backend:** Python 3.10+, FastAPI / LangChain
+- **Embeddings & LLMs:** OpenAI / Local HuggingFace embeddings
+- **Data Stores:** SQLite / Vector Store (FAISS/Chroma)
+
+---
+
+## 📄 License
+Academic & Research Project © 2026 Arsenii Leno
