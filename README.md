@@ -42,3 +42,7 @@ A = accurate, I = incomplete, H = hallucinated (Magesh et al., 2025). A+V applie
 `build_docs.py` fills the ACM interim-layout Word template (not included) with the paper text: `python3 build_docs.py interim-layout.docx . paper`.
 
 The simulation script was written with an AI coding assistant and reviewed by the authors.
+
+## About this repository
+
+DIkastes.ai started as a LegalTech product concept; its original vision and architecture are kept in [VISION.md](VISION.md). This branch of work is the VYBSEM zadanie 3 proof of concept. License: Apache-2.0.
