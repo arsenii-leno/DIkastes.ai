@@ -107,13 +107,13 @@ PAPER_BODY = [
           "version is Type I (NOT_IN_FORCE); a free-text \u201c§ 2(3)\u201d resolves to the version in force at *t*, "
           "and whether the claim follows from it is Type II."),
     ("h", "3", "Proposed Architecture"),
-    ("p", "**A** is similarity-only RAG over all versions. **B** filters before ranking (jurisdiction applies, version "
-          "in force at *t*, no recorded override) over a work/version model of norms [{demartim}]. **C** passes B's "
+    ("p", "**A** is similarity-only RAG over all versions. **B** filters before ranking (jurisdiction, validity at *t*, "
+          "recorded overrides) over a work/version model of norms [{demartim}]. **C** passes B's "
           "answer to a deterministic verifier *V* that resolves each citation to a version identifier and returns VALID "
           "or a flag: NONEXISTENT, NOT_IN_FORCE, WRONG_JURISDICTION, OVERRIDDEN, or UNVERIFIABLE when the norm lies outside the "
-          "corpus. Absent is not fabricated: a weak checker flagged 65.9% of valid but unlisted "
-          "citations [{liu}]. Flags are shown, never silently "
-          "dropped [{magesh}]. Identifier matching cut hallucinated citations in Italian judgments from 11.7% to 0.9% (against "
+          "corpus; **A+V** applies V to A's answer without B's filters. Absent is not fabricated: a weak checker flagged 65.9% of valid but unlisted "
+          "citations [{liu}]. Flags are shown, not dropped "
+          "[{magesh}]. Identifier matching cut hallucinated citations in Italian judgments from 11.7% to 0.9% (against "
           "the judgment's own text, without time or rank) [{piccioli}]. For Type II we plan a diverse, "
           "independent LLM jury validated against human experts, like LEXam's minimum-score ensemble [{lexam}]. The 10 "
           "synthetic cases cover controls, fabricated premises, repealed versions (one mirrors 17 "
