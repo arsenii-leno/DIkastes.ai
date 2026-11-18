@@ -91,7 +91,7 @@ PAPER_BODY = [
           "support) as a position and benchmark agenda [{taranukhin}]. A lookup check of Ukrainian answers against a "
           "court-decision citation graph showed that reported rates follow oracle coverage (grounding 0.79–0.86 on a "
           "sparse vs 0.99–1.00 on a dense graph, same answers) [{ovcharov}]. In common law, checking a "
-          "precedent needs agentic search (GPT-5: 15.3 steps per excerpt) [{liu}]. We contribute (i) a "
+          "precedent needs agentic search [{liu}]. We contribute (i) a "
           "decidability split: what lookup in an official, versioned corpus settles and what it cannot, (ii) version- "
           "and rank-aware retrieval and verification, and (iii) a 10-case illustration."),
     ("h", "2", "Failure Taxonomy"),
@@ -110,16 +110,14 @@ PAPER_BODY = [
     ("p", "**A** is similarity-only RAG over all versions. **B** filters before ranking (jurisdiction, validity at *t*, "
           "recorded overrides) over a work/version model of norms [{demartim}]. **C** passes B's "
           "answer to a deterministic verifier *V* that resolves each citation to a version identifier and returns VALID "
-          "or a flag: NONEXISTENT, NOT_IN_FORCE, WRONG_JURISDICTION, OVERRIDDEN, or UNVERIFIABLE when the norm lies outside the "
+          "or a visible flag [{magesh}]: NONEXISTENT, NOT_IN_FORCE, WRONG_JURISDICTION, OVERRIDDEN, or UNVERIFIABLE when the norm lies outside the "
           "corpus; **A+V** applies V to A's answer without B's filters. Absent is not fabricated: a weak checker flagged 65.9% of valid but unlisted "
-          "citations [{liu}]. Flags are shown, not dropped "
-          "[{magesh}]. Identifier matching cut hallucinated citations in Italian judgments from 11.7% to 0.9% (against "
+          "citations [{liu}]. Identifier matching cut hallucinated citations in Italian judgments from 11.7% to 0.9% (against "
           "the judgment's own text, without time or rank) [{piccioli}]. For Type II we plan a diverse, "
           "independent LLM jury validated against human experts, like LEXam's minimum-score ensemble [{lexam}]. The 10 "
-          "synthetic cases cover controls, fabricated premises, repealed versions (one mirrors 17 "
-          "November), a Czech near-twin, lex superior conflicts with and without a recorded edge, and misgrounding; a "
+          "synthetic cases cover controls, the four Type I traps (one mirrors 17 November) and two Type II traps; a "
           "deterministic generator cites the top retrieved version and echoes premise citations; answers are scored accurate, incomplete or "
-          "hallucinated [{magesh}]. The script was written with an AI coding assistant and reviewed by the authors."),
+          "hallucinated [{magesh}]. The script, written with an AI coding assistant and reviewed by the authors, and per-case results are at github.com/arsenii-leno/DIkastes.ai."),
     ("h", "4", "Illustrative Evaluation"),
     ("fig",),
     ("p", "A (2 of 10 accurate) retrieves repealed, foreign and lower-ranked versions and echoes fabrications. A+V "
